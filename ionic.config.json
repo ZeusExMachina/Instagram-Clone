@@ -1,0 +1,7 @@
+{
+  "name": "swen325_a3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
