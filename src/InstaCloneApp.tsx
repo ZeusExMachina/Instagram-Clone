@@ -4,12 +4,8 @@ import { IonApp } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { IonRouterOutlet } from '@ionic/react';
 /* Pages */
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
-import MainFeed from './pages/MainFeed';
 /* Components */
 import MainTabs from './components/MainTabs';
 /* States */
