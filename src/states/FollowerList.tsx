@@ -1,5 +1,5 @@
 // 3rd-party Imports
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 // States
 import { CurrentUser } from "../states/CurrentUser";
 // Utility
@@ -16,9 +16,16 @@ export default function FollowerListProvider({ children }:any) {
     // Imported states
     const currentUser = useContext(CurrentUser);
 
+    useEffect(() => {
+        // console.log("followerList", followerList);
+    }, [followerList])
+
+    useEffect(() => {
+        refreshFollowerList();
+    }, [currentUser])
+
     async function refreshFollowerList() {
         const followingListFromFirebase = await getUserFollowers(currentUser);
-
         if (!arraysAreEqual(followerList,followingListFromFirebase)) {
             setFollowerList(followingListFromFirebase);
         }

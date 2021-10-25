@@ -106,3 +106,13 @@ export async function getUserFollowers(username:string) : Promise<string[]> {
 
     return Promise.resolve(followerList);
 }
+
+export async function uploadPhoto(username:string, filename:string, base64Data:string) {
+    if (await userExists(username) == false) { return Promise.resolve([]); }
+
+    const storageRef = FirebaseStorage.ref().child(username + "/" + filename);
+
+    storageRef.putString(base64Data, 'data_url').then(function(snapshot) {
+        console.log('Uploaded a base64 string!');
+    });
+}

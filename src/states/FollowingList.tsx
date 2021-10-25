@@ -19,7 +19,7 @@ export default function FollowingListProvider({ children }:any) {
     const currentUser = useContext(CurrentUser);
 
     useEffect(() => {
-        console.log("followingList", followingList);
+        // console.log("followingList", followingList);
     }, [followingList]);
 
     useEffect(() => {

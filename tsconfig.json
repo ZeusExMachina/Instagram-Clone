@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "firebase.js", "firebase-access", "firebase-access", "firebase.js"  ]
+, "src/firebase.js", "firebase-access", "firebase-access", "src/firebase.js", "firebaseConfig.ts"  ]
 }
