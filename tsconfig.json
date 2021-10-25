@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "firebase.js", "firebase-access", "firebase-access", "firebase.js"  ]
 }
