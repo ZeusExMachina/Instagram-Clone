@@ -14,6 +14,10 @@ const TakePhoto: React.FC = () => {
 
   const [uploadButtonEnabled, setUploadButtonEnabled] = useState<boolean>(true);
 
+  async function handlePostPhoto() {
+    await uploadPhoto(currentUser, photo!.filepath, photo!.base64Data!);
+  }
+
   useEffect(() => {
     if (photo != undefined) { setUploadButtonEnabled(false); }
   }, [photo])
@@ -36,7 +40,7 @@ const TakePhoto: React.FC = () => {
         {photo != undefined && <IonImg src={photo.webviewPath}></IonImg>}
         <IonButton 
           disabled={uploadButtonEnabled}
-          onClick={async () => { uploadPhoto(currentUser, photo!.filepath, photo!.base64Data!); }}
+          onClick={async () => { await handlePostPhoto(); }}
         >
           Post Photo
         </IonButton>

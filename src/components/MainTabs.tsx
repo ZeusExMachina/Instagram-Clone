@@ -8,13 +8,14 @@ import {
     IonTabButton,
     IonTabs,
 } from '@ionic/react';
-import { ellipse, home, search, square, triangle, camera } from 'ionicons/icons';
+import { ellipse, home, search, square, triangle, camera, person } from 'ionicons/icons';
 import Tab1 from '../pages/Tab1';
 import CreateAccount from '../pages/CreateAccount';
 import Login from '../pages/Login';
 import MainFeed from '../pages/MainFeed';
 import UserSearch from '../pages/UserSearch';
 import TakePhoto from '../pages/TakePhoto';
+import Profile from '../pages/Profile';
 
 const MainTabs = () => {
     return (
@@ -28,6 +29,9 @@ const MainTabs = () => {
                 </Route>
                 <Route exact path="/entrance/takephoto">
                     <TakePhoto />
+                </Route>
+                <Route exact path="/entrance/profile">
+                    <Profile />
                 </Route>
                 <Route exact path="/entrance/tab1">
                     <Tab1 />
@@ -48,6 +52,10 @@ const MainTabs = () => {
                 <IonTabButton tab="takephoto" href="/entrance/takephoto">
                     <IonIcon icon={camera} />
                     <IonLabel>Take photo</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="profile" href="/entrance/profile">
+                    <IonIcon icon={person} />
+                    <IonLabel>Profile</IonLabel>
                 </IonTabButton>
                 <IonTabButton tab="tab1" href="/entrance/tab1">
                     <IonIcon icon={triangle} />

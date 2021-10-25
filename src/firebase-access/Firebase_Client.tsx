@@ -107,12 +107,31 @@ export async function getUserFollowers(username:string) : Promise<string[]> {
     return Promise.resolve(followerList);
 }
 
+// ---------------------------------
+// Images in Firebase Storage 
+// ---------------------------------
 export async function uploadPhoto(username:string, filename:string, base64Data:string) {
     if (await userExists(username) == false) { return Promise.resolve([]); }
 
     const storageRef = FirebaseStorage.ref().child(username + "/" + filename);
 
-    storageRef.putString(base64Data, 'data_url').then(function(snapshot) {
+    storageRef.putString(base64Data, 'data_url').then(() => {
         console.log('Uploaded a base64 string!');
     });
+}
+
+export async function getAllPhotosForUser(username:string) : Promise<string[]> {
+    if (await userExists(username) == false) { return Promise.resolve([]); }
+
+    const userPhotosRef = FirebaseStorage.ref().child(username);
+
+    const allUsersPhotosListResult = await userPhotosRef.listAll();
+    const allUsersPhotos = allUsersPhotosListResult.items;
+
+    let photoUrls : any[] = [];
+    for (let i = 0; i < allUsersPhotos.length; i++) {
+        photoUrls.push(await allUsersPhotos[i].getDownloadURL());
+    }
+
+    return Promise.resolve(photoUrls);
 }

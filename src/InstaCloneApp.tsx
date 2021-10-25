@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { IonRouterOutlet } from '@ionic/react';
 /* Pages */
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
