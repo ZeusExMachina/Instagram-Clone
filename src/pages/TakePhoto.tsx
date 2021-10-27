@@ -1,25 +1,28 @@
 // 3rd-party Imports
-import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonImg } from '@ionic/react';
 import React, { useContext, useEffect, useState } from 'react'
+// Components
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonImg } from '@ionic/react';
 // States
 import { CurrentUser } from '../states/CurrentUser';
+import { UploadPhoto } from '../states/UserPhotos';
 // Hooks
 import { usePhotoGallery } from "../hooks/usePhotoGallery";
-// Firebase
-import { uploadPhoto } from '../firebase-access/Firebase_Client';
 
 const TakePhoto: React.FC = () => {
-  const { photo, takePhoto } = usePhotoGallery();
+  const { photo, setPhoto, takePhoto } = usePhotoGallery();
   const currentUser = useContext(CurrentUser);
+  const uploadPhoto = useContext(UploadPhoto);
 
-  const [uploadButtonEnabled, setUploadButtonEnabled] = useState<boolean>(true);
+  const [uploadButtonDisabled, setUploadButtonDisabled] = useState<boolean>(true);
 
   async function handlePostPhoto() {
     await uploadPhoto(currentUser, photo!.filepath, photo!.base64Data!);
+    setPhoto(undefined);
+    setUploadButtonDisabled(true)
   }
 
   useEffect(() => {
-    if (photo != undefined) { setUploadButtonEnabled(false); }
+    if (photo != undefined) { setUploadButtonDisabled(false); }
   }, [photo])
 
   return (
@@ -39,7 +42,7 @@ const TakePhoto: React.FC = () => {
         </IonButton>
         {photo != undefined && <IonImg src={photo.webviewPath}></IonImg>}
         <IonButton 
-          disabled={uploadButtonEnabled}
+          disabled={uploadButtonDisabled}
           onClick={async () => { await handlePostPhoto(); }}
         >
           Post Photo

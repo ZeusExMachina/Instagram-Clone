@@ -78,7 +78,7 @@ export async function getUserFollowing(username:string) : Promise<string[]> {
 }
 
 /**
- * 
+ * Updates the following list of currentUser to include/exclude usernameToFollow
  * @param usernameToFollow 
  * @param currentUser 
  */
@@ -101,7 +101,7 @@ async function updateFollowingUser(usernameToFollow:string, currentUser:string) 
 }
 
 /**
- * 
+ * Updates the follower list of userToUpdate by including/excluding usernameOfFollower
  * @param usernameOfFollower 
  * @param userToUpdate 
  */

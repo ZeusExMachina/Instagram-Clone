@@ -1,11 +1,3 @@
-/* States */
-import CurrentUserProvider from './states/CurrentUser';
-import FollowingListProvider from './states/FollowingList';
-import FollowerListProvider from './states/FollowerList';
-import UserPhotosProvider from './states/UserPhotos';
-import AllPostsOfFollowingProvider from './states/AllPostsOfFollowing';
-import UserSearchResultsProvider from './states/UserSearchResults';
-
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -24,6 +16,14 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+
+// States
+import CurrentUserProvider from './states/CurrentUser';
+import FollowingListProvider from './states/FollowingList';
+import FollowerListProvider from './states/FollowerList';
+import UserPhotosProvider from './states/UserPhotos';
+import AllPostsOfFollowingProvider from './states/AllPostsOfFollowing';
+import UserSearchResultsProvider from './states/UserSearchResults';
 
 /* App */
 import InstaCloneApp from './InstaCloneApp';

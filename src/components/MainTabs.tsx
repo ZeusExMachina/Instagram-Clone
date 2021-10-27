@@ -1,12 +1,15 @@
 import { Redirect, Route } from 'react-router-dom';
+// Components
 import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
-import { home, search, camera, person } from 'ionicons/icons';
+// Pages
 import MainFeed from '../pages/MainFeed';
 import UserSearch from '../pages/UserSearch';
 import TakePhoto from '../pages/TakePhoto';
 import Profile from '../pages/Profile';
 import FollowingListDisplay from '../pages/FollowingListDisplay';
 import FollowerListDisplay from '../pages/FollowerListDisplay';
+// Appearances
+import { home, search, camera, person } from 'ionicons/icons';
 
 const MainTabs = () => {
     return (

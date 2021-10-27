@@ -5,9 +5,10 @@ import { CurrentUser } from "../states/CurrentUser";
 // Utility
 import arraysAreEqual from '../utility/ArraysAreEqual';
 // Firebase
-import { getAllPhotosForUser } from '../firebase-access/Firebase_Client';
+import { uploadPhoto, getAllPhotosForUser } from '../firebase-access/Firebase_Client';
 
 export const UserPhotos = React.createContext([] as string[]);
+export const UploadPhoto = React.createContext(async (username:string, filename:string, base64Data:string) => {})
 export const RefreshUserPhotos = React.createContext(async () => {});
 
 export default function UserPhotosProvider({ children }:any) {
@@ -24,6 +25,10 @@ export default function UserPhotosProvider({ children }:any) {
     useEffect(() => {
         refreshPhotoUrls();
     }, [currentUser]);
+
+    async function uploadPhotoToFirebase(username: string, filename: string, base64Data: string) {
+        await uploadPhoto(username, filename, base64Data);
+    }
 
     async function refreshPhotoUrls() {
         const photoFromFirebase = await getAllPhotosForUser(currentUser);
@@ -47,9 +52,11 @@ export default function UserPhotosProvider({ children }:any) {
 
     return (
         <UserPhotos.Provider value={userPhotoUrls}>
-            <RefreshUserPhotos.Provider value={refreshPhotoUrls}>
-                { children }
-            </RefreshUserPhotos.Provider>
+            <UploadPhoto.Provider value={uploadPhotoToFirebase}>
+                <RefreshUserPhotos.Provider value={refreshPhotoUrls}>
+                    { children }
+                </RefreshUserPhotos.Provider>
+            </UploadPhoto.Provider>
         </UserPhotos.Provider>
     );
 }

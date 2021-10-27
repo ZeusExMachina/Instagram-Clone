@@ -11,7 +11,7 @@ export default function CurrentUserProvider({ children }:any) {
     const [currentUser, setCurrentUser] = useState<string>("");
 
     useEffect(() => {
-        console.log("currentUser", currentUser);
+        // console.log("currentUser", currentUser);
     }, [currentUser]);
 
     /**

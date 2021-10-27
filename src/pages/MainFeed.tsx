@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 // Components
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import Post from '../components/Post';
 // States
 import { AllPostsOfFollowing, FollowingUserPostInfo, RefreshAllPosts } from '../states/AllPostsOfFollowing';

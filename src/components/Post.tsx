@@ -1,4 +1,5 @@
 import React from 'react'
+// Components
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonImg } from '@ionic/react';
 
 interface Props {

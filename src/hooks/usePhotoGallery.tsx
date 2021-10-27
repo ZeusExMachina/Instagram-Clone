@@ -36,8 +36,8 @@ export function usePhotoGallery() {
 
   return {
     photo,
+    setPhoto,
     takePhoto,
-
   };
 }
 

@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-/* Pages */
+// Components
+import MainTabs from './components/MainTabs';
+// Pages
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/Login';
-/* Components */
-import MainTabs from './components/MainTabs';
-/* States */
+// States
 import { CurrentUser } from './states/CurrentUser';
 
 const InstaCloneApp = () => {
