@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 // Components
-import { add, remove } from 'ionicons/icons';
+import { add, remove, person } from 'ionicons/icons';
 import { IonAvatar, IonButton, IonIcon, IonImg, IonItem, IonLabel } from '@ionic/react';
 // States
-import { FollowingList, IsFollowing, ToggleFollowingUser } from '../states/FollowingList'
+import { FollowingList, IsFollowing, ToggleFollowingUser, RefreshFollowingList } from '../states/FollowingList'
 
 interface Props {
     username : string
@@ -14,6 +14,7 @@ const UserItem = (props : Props) => {
     const followingList = useContext(FollowingList);
     const isFollowing = useContext(IsFollowing);
     const toggleFollowingUser = useContext(ToggleFollowingUser);
+    const refreshFollowingList = useContext(RefreshFollowingList)
     // Local states
     const [currentlyFollowing, setCurrentlyFollowing] = useState<boolean|undefined>(undefined);
     
@@ -21,22 +22,22 @@ const UserItem = (props : Props) => {
         if (currentlyFollowing == undefined) {
             isFollowing(props.username).then(value => setCurrentlyFollowing(value));
         }
-        console.log("currentlyFollowing", currentlyFollowing)
+        // console.log("currentlyFollowing", currentlyFollowing)
     }, [currentlyFollowing])
 
     useEffect(() => {
+        // console.log("in useEffect");
         isFollowing(props.username).then(value => setCurrentlyFollowing(value));
     }, [followingList])
 
     async function toggleCurrentlyFollowing() {
+        await refreshFollowingList();
         await toggleFollowingUser(props.username);
+        await refreshFollowingList();
     }
     
     return (
         <IonItem>
-            <IonAvatar>
-                <IonImg src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"/>
-            </IonAvatar>
             <IonLabel>{props.username}</IonLabel>
             <IonButton
                 color="primary" 

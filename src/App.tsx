@@ -3,6 +3,7 @@ import CurrentUserProvider from './states/CurrentUser';
 import FollowingListProvider from './states/FollowingList';
 import FollowerListProvider from './states/FollowerList';
 import UserPhotosProvider from './states/UserPhotos';
+import AllPostsOfFollowingProvider from './states/AllPostsOfFollowing';
 import UserSearchResultsProvider from './states/UserSearchResults';
 
 /* Core CSS required for Ionic components to work properly */
@@ -33,9 +34,11 @@ const App = () => {
       <FollowingListProvider>
         <FollowerListProvider>
           <UserPhotosProvider>
-            <UserSearchResultsProvider>
-              <InstaCloneApp/>
-            </UserSearchResultsProvider>
+            <AllPostsOfFollowingProvider>
+              <UserSearchResultsProvider>
+                <InstaCloneApp/>
+              </UserSearchResultsProvider>
+            </AllPostsOfFollowingProvider>
           </UserPhotosProvider>
         </FollowerListProvider>
       </FollowingListProvider>

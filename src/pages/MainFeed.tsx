@@ -1,10 +1,16 @@
-import React from 'react'
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardContent } from '@ionic/react';
+import React, { useContext } from 'react'
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 // Components
 import Post from '../components/Post';
-import ExploreContainer from '../components/ExploreContainer';
+// States
+import { AllPostsOfFollowing, FollowingUserPostInfo, RefreshAllPosts } from '../states/AllPostsOfFollowing';
 
 const MainFeed : React.FC = () => {
+    const allPostUrlsOfFollowing : FollowingUserPostInfo[] = useContext(AllPostsOfFollowing);
+    const refreshAllPosts = useContext(RefreshAllPosts);
+
+    refreshAllPosts();
+
     return (
         <IonPage>
             <IonHeader>
@@ -13,13 +19,7 @@ const MainFeed : React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                <IonToolbar>
-                    <IonTitle size="large">Main Feed here!</IonTitle>
-                </IonToolbar>
-                </IonHeader>
-                {/* <ExploreContainer name="Main Feed here!" /> */}
-                <Post/>
+                {allPostUrlsOfFollowing.map((post,i) => React.createElement(Post, {key:i, posterUsername:post.posterUsername, postImgUrl:post.postUrl}))}
             </IonContent>
         </IonPage>
     );

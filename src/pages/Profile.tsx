@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
-
+import React, { useContext } from 'react'
+// Components
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonImg, IonPage, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/react'
 // States
 import { CurrentUser } from '../states/CurrentUser'
-import { FollowingList } from '../states/FollowingList'
-import { FollowerList } from '../states/FollowerList'
+import { FollowingList, RefreshFollowingList } from '../states/FollowingList'
+import { FollowerList, RefreshFollowerList } from '../states/FollowerList'
 import { UserPhotos, RefreshUserPhotos } from '../states/UserPhotos'
 
 const UserProfile = () => {
@@ -13,8 +13,12 @@ const UserProfile = () => {
     const numOfFollowing = useContext(FollowingList).length;
     const numOfFollowers = useContext(FollowerList).length;
     const userPhotoUrls = useContext(UserPhotos);
+    const refreshFollowingList = useContext(RefreshFollowingList);
+    const refreshFollowerList = useContext(RefreshFollowerList);
     const refreshUserPhotos = useContext(RefreshUserPhotos);
 
+    refreshFollowingList();
+    refreshFollowerList();
     refreshUserPhotos();
 
     const createRowsAndColsOfPhotos = () => {
@@ -74,7 +78,6 @@ const UserProfile = () => {
                         <IonText>Following</IonText>
                     </IonButton>
                 </div>
-                {/* <IonImg src={singleImg}/> */}
                 {createRowsAndColsOfPhotos()}
             </IonContent>
         </IonPage>

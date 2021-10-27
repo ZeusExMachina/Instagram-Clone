@@ -77,23 +77,58 @@ export async function getUserFollowing(username:string) : Promise<string[]> {
     return Promise.resolve(followingList);
 }
 
-export async function toggleFollowingUser(usernameToToggle:string, currentUser:string) {
-    if (await userExists(currentUser) == false || await userExists(usernameToToggle) == false) { return }
-
+/**
+ * 
+ * @param usernameToFollow 
+ * @param currentUser 
+ */
+async function updateFollowingUser(usernameToFollow:string, currentUser:string) {
     const currentFollowingList = await getUserFollowing(currentUser);
 
-    if (currentFollowingList.includes(usernameToToggle)) {
+    if (currentFollowingList.includes(usernameToFollow)) {
         // Currently following, so un-follow
-        const indexOfUserInFollowing = currentFollowingList.indexOf(usernameToToggle);
+        const indexOfUserInFollowing = currentFollowingList.indexOf(usernameToFollow);
         if (indexOfUserInFollowing != -1) { currentFollowingList.splice(indexOfUserInFollowing, 1); }
     } else {
-        currentFollowingList.push(usernameToToggle);
+        // Currently not following, so follow
+        currentFollowingList.push(usernameToFollow);
     }
 
     const userRef = FirestoreDB.collection("users").doc(currentUser);
     userRef.update({
         following: currentFollowingList
     });
+}
+
+/**
+ * 
+ * @param usernameOfFollower 
+ * @param userToUpdate 
+ */
+async function updateFollower(usernameOfFollower:string, userToUpdate:string) {
+    const currentFollowerList = await getUserFollowers(userToUpdate);
+
+    if (currentFollowerList.includes(usernameOfFollower)) {
+        // Currently following, so un-follow
+        const indexOfUserInFollowers = currentFollowerList.indexOf(usernameOfFollower);
+        if (indexOfUserInFollowers != -1) { currentFollowerList.splice(indexOfUserInFollowers, 1); }
+    } else {
+        // Currently not following, so follow
+        currentFollowerList.push(usernameOfFollower);
+    }
+
+    const userRef = FirestoreDB.collection("users").doc(userToUpdate);
+    userRef.update({
+        followers: currentFollowerList
+    });
+}
+
+export async function toggleFollowingUser(usernameToToggle:string, currentUser:string) {
+    if (await userExists(currentUser) == false || await userExists(usernameToToggle) == false) { return }
+
+    updateFollowingUser(usernameToToggle, currentUser)
+
+    updateFollower(currentUser, usernameToToggle)
 }
 
 export async function getUserFollowers(username:string) : Promise<string[]> {
@@ -120,18 +155,19 @@ export async function uploadPhoto(username:string, filename:string, base64Data:s
     });
 }
 
-export async function getAllPhotosForUser(username:string) : Promise<string[]> {
-    if (await userExists(username) == false) { return Promise.resolve([]); }
+export async function getAllPhotosForUser(username:string) : Promise<Map<number,string>> {
+    if (await userExists(username) == false) { return Promise.resolve(new Map<number,string>()); }
 
     const userPhotosRef = FirebaseStorage.ref().child(username);
 
     const allUsersPhotosListResult = await userPhotosRef.listAll();
     const allUsersPhotos = allUsersPhotosListResult.items;
 
-    let photoUrls : any[] = [];
+    let photos = new Map<number,string>();
     for (let i = 0; i < allUsersPhotos.length; i++) {
-        photoUrls.push(await allUsersPhotos[i].getDownloadURL());
+        const photoName = parseInt(allUsersPhotos[i].name.slice(0,-4))
+        photos.set(photoName, await allUsersPhotos[i].getDownloadURL());
     }
 
-    return Promise.resolve(photoUrls);
+    return Promise.resolve(photos);
 }
