@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useIonRouter } from '@ionic/react';
 // Components
 import { IonButton, IonCol, IonContent, IonGrid, IonHeader, IonImg, IonPage, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/react'
 // States
@@ -8,6 +9,7 @@ import { FollowerList, RefreshFollowerList } from '../states/FollowerList'
 import { UserPhotos, RefreshUserPhotos } from '../states/UserPhotos'
 
 const UserProfile = () => {
+    const router = useIonRouter();
     // Imported states
     const currentUser = useContext(CurrentUser);
     const numOfFollowing = useContext(FollowingList).length;
@@ -20,6 +22,10 @@ const UserProfile = () => {
     refreshFollowingList();
     refreshFollowerList();
     refreshUserPhotos();
+
+    function navigateToPage(path : string) {
+        router.push(path, "forward", "push");
+    }
 
     const createRowsAndColsOfPhotos = () => {
         let listOfRows : any[] = [];
@@ -66,13 +72,13 @@ const UserProfile = () => {
             <IonContent>
                 <div>
                     <IonButton
-                        onClick={() => {}}
+                        onClick={() => { navigateToPage("/entrance/followerlist"); }}
                     >
                         { numOfFollowers }
                         <IonText>Followers</IonText>
                     </IonButton>
                     <IonButton
-                        onClick={() => {}}
+                        onClick={() => { navigateToPage("/entrance/followinglist"); }}
                     >
                         { numOfFollowing }
                         <IonText>Following</IonText>

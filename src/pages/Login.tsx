@@ -1,11 +1,9 @@
 import React, { useState, useContext } from 'react'
 import { useIonRouter } from '@ionic/react';
 // Components
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonText, IonInput, IonButton, IonBackButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonText, IonInput, IonButton } from '@ionic/react';
 // States
 import { AuthenticateUser } from '../states/CurrentUser';
-import { RefreshFollowingList } from '../states/FollowingList';
-import { RefreshFollowerList } from '../states/FollowerList';
 
 const Login = () => {
     const router = useIonRouter();
@@ -13,8 +11,6 @@ const Login = () => {
     const [passwordText, setPasswordText] = useState("");
     // Imported states
     const authenticateUser = useContext(AuthenticateUser);
-    const refreshFollowingList = useContext(RefreshFollowingList);
-    const refreshFollowerList = useContext(RefreshFollowerList)
 
     function navigateToPage(path : string) {
         router.push(path, "forward", "push");

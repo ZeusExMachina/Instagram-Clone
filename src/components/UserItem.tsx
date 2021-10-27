@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 // Components
-import { add, remove, person } from 'ionicons/icons';
-import { IonAvatar, IonButton, IonIcon, IonImg, IonItem, IonLabel } from '@ionic/react';
+import { add, remove,  } from 'ionicons/icons';
+import { IonButton, IonIcon, IonItem, IonLabel } from '@ionic/react';
 // States
 import { FollowingList, IsFollowing, ToggleFollowingUser, RefreshFollowingList } from '../states/FollowingList'
 

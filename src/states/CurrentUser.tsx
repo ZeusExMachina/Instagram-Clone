@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { validateLogin, addNewUser } from "../firebase-access/Firebase_Client";
 
 export const CurrentUser = React.createContext("")
-export const CreateNewUserTemp = React.createContext(() => {}); // delete this later
 export const AuthenticateUser = React.createContext(async (username:string, password:string) => { return Promise.resolve(-1); })
 export const CreateNewUser = React.createContext(async (username:string, password:string) => { return Promise.resolve(-1); })
 
@@ -14,10 +13,6 @@ export default function CurrentUserProvider({ children }:any) {
     useEffect(() => {
         console.log("currentUser", currentUser);
     }, [currentUser]);
-
-    function createAccount() {
-        setCurrentUser("Dummy");
-    }
 
     /**
      * Checks if a valid username-password pair exists.
@@ -69,13 +64,11 @@ export default function CurrentUserProvider({ children }:any) {
 
     return (
         <CurrentUser.Provider value={currentUser}>
-            <CreateNewUserTemp.Provider value={createAccount}>
-                <AuthenticateUser.Provider value={authenticateUser}>
-                    <CreateNewUser.Provider value={createUser}>
-                        { children }
-                    </CreateNewUser.Provider>
-                </AuthenticateUser.Provider>
-            </CreateNewUserTemp.Provider>
+            <AuthenticateUser.Provider value={authenticateUser}>
+                <CreateNewUser.Provider value={createUser}>
+                    { children }
+                </CreateNewUser.Provider>
+            </AuthenticateUser.Provider>
         </CurrentUser.Provider>
     )
 }

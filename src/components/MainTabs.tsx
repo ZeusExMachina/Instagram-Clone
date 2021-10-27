@@ -1,21 +1,12 @@
-import React, { useState } from 'react'
 import { Redirect, Route } from 'react-router-dom';
-import {
-    IonIcon,
-    IonLabel,
-    IonRouterOutlet,
-    IonTabBar,
-    IonTabButton,
-    IonTabs,
-} from '@ionic/react';
-import { ellipse, home, search, square, triangle, camera, person } from 'ionicons/icons';
-import Tab1 from '../pages/Tab1';
-import CreateAccount from '../pages/CreateAccount';
-import Login from '../pages/Login';
+import { IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
+import { home, search, camera, person } from 'ionicons/icons';
 import MainFeed from '../pages/MainFeed';
 import UserSearch from '../pages/UserSearch';
 import TakePhoto from '../pages/TakePhoto';
 import Profile from '../pages/Profile';
+import FollowingListDisplay from '../pages/FollowingListDisplay';
+import FollowerListDisplay from '../pages/FollowerListDisplay';
 
 const MainTabs = () => {
     return (
@@ -33,12 +24,15 @@ const MainTabs = () => {
                 <Route exact path="/entrance/profile">
                     <Profile />
                 </Route>
-                <Route exact path="/entrance/tab1">
-                    <Tab1 />
+                <Route exact path="/entrance/followinglist">
+                    <FollowingListDisplay />
                 </Route>
-                {/* <Route exact path="/">
-                    <Redirect to="/tab1" />
-                </Route> */}
+                <Route exact path="/entrance/followerlist">
+                    <FollowerListDisplay />
+                </Route>
+                <Route exact path="/entrance">
+                    <Redirect to="/entrance/mainfeed" />
+                </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
                 <IonTabButton tab="mainfeed" href="/entrance/mainfeed">
@@ -56,10 +50,6 @@ const MainTabs = () => {
                 <IonTabButton tab="profile" href="/entrance/profile">
                     <IonIcon icon={person} />
                     <IonLabel>Profile</IonLabel>
-                </IonTabButton>
-                <IonTabButton tab="tab1" href="/entrance/tab1">
-                    <IonIcon icon={triangle} />
-                    <IonLabel>Tab 1</IonLabel>
                 </IonTabButton>
             </IonTabBar>
         </IonTabs>

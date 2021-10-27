@@ -3,19 +3,14 @@ import { useIonRouter } from '@ionic/react';
 // Components
 import { IonContent, IonPage, IonText, IonButton, IonInput } from '@ionic/react';
 // States
-import { CreateNewUser, CreateNewUserTemp } from '../states/CurrentUser';
-import { RefreshFollowingList } from '../states/FollowingList';
-import { RefreshFollowerList } from '../states/FollowerList';
+import { CreateNewUser } from '../states/CurrentUser';
 
 const CreateAccount = () => {
     const router = useIonRouter();
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
     // Imported states
-    const createNewUserTemp = useContext(CreateNewUserTemp);
     const createNewUser = useContext(CreateNewUser);
-    const refreshFollowingList = useContext(RefreshFollowingList);
-    const refreshFollowerList = useContext(RefreshFollowerList)
 
     function navigateToPage(path : string) {
         router.push(path, "forward", "push");

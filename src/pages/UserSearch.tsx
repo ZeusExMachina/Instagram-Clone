@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 // Components
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonList, IonAvatar, IonLabel, IonItem } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, IonList } from '@ionic/react';
 import UserSearchItem from '../components/UserItem';
 // States
 import { UserSearchResults, UpdateSearchedUsers } from '../states/UserSearchResults';
@@ -28,9 +28,9 @@ const UserSearch : React.FC = () => {
                 />
             </IonHeader>
             <IonContent fullscreen>
-                    <IonList>
-                        {userSearchResults.map((username,i) => React.createElement(UserSearchItem, {key:i, username:username}))}
-                    </IonList>
+                <IonList>
+                    {userSearchResults.map((username,i) => React.createElement(UserSearchItem, {key:i, username:username}))}
+                </IonList>
             </IonContent>
         </IonPage>
     );
