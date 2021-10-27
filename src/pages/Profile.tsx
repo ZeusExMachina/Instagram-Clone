@@ -14,8 +14,8 @@ const UserProfile = () => {
     const router = useIonRouter();
     // Imported states
     const currentUser = useContext(CurrentUser);
-    const numOfFollowing = useContext(FollowingList).length;
-    const numOfFollowers = useContext(FollowerList).length;
+    const numOfFollowing = useContext(FollowingList)!.length;
+    const numOfFollowers = useContext(FollowerList)!.length;
     const userPhotoUrls = useContext(UserPhotos);
     const refreshFollowingList = useContext(RefreshFollowingList);
     const refreshFollowerList = useContext(RefreshFollowerList);
