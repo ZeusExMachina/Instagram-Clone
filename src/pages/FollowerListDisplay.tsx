@@ -5,8 +5,8 @@ import UserSearchItem from '../components/UserItem';
 // States
 import { FollowerList } from '../states/FollowerList';
 // Appearances
-import { chevronBackOutline } from 'ionicons/icons';
-
+import { chevronDownOutline } from 'ionicons/icons';
+import './FollowerListDisplay.css'
 
 const FollowerListDisplay = () => {
     const followerList = useContext(FollowerList);
@@ -17,8 +17,8 @@ const FollowerListDisplay = () => {
                 <IonPage>
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle>Users that follow you</IonTitle>
-                            <IonBackButton icon={chevronBackOutline}/>
+                            <IonTitle class="followerHeaderText">Users that follow you</IonTitle>
+                            <IonBackButton class="followerBackButton" icon={chevronDownOutline}/>
                         </IonToolbar>
                     </IonHeader>
                     <IonContent fullscreen>
@@ -32,7 +32,7 @@ const FollowerListDisplay = () => {
                     <IonHeader>
                         <IonToolbar>
                             <IonTitle>Users that follow you</IonTitle>
-                            <IonBackButton icon={chevronBackOutline}/>
+                            <IonBackButton icon={chevronDownOutline}/>
                         </IonToolbar>
                     </IonHeader>
                     <IonContent fullscreen>

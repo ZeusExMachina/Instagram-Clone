@@ -4,6 +4,8 @@ import { IonContent, IonHeader, IonPage, IonText, IonTitle, IonToolbar } from '@
 import Post from '../components/Post';
 // States
 import { AllPostsOfFollowing, FollowingUserPostInfo, RefreshAllPosts } from '../states/AllPostsOfFollowing';
+// Appearance
+import './MainFeed.css';
 
 const MainFeed : React.FC = () => {
     const allPostUrlsOfFollowing : FollowingUserPostInfo[] = useContext(AllPostsOfFollowing);
@@ -17,10 +19,10 @@ const MainFeed : React.FC = () => {
                 <IonPage>
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle>Main Feed</IonTitle>
+                            <IonTitle class="mainFeedHeaderText">Insta-Pic</IonTitle>
                         </IonToolbar>
                     </IonHeader>
-                    <IonContent fullscreen>
+                    <IonContent fullscreen class="mainFeedContent">
                         {allPostUrlsOfFollowing.map((post,i) => React.createElement(Post, {key:i, posterUsername:post.posterUsername, postImgUrl:post.postUrl}))}
                     </IonContent>
                 </IonPage>
@@ -28,11 +30,11 @@ const MainFeed : React.FC = () => {
                 <IonPage>
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle>Main Feed</IonTitle>
+                            <IonTitle class="mainFeedHeaderText">Insta-Pic</IonTitle>
                         </IonToolbar>
                     </IonHeader>
-                    <IonContent fullscreen>
-                        <IonText>No posts to show. Follow someone to see their posts!</IonText>
+                    <IonContent fullscreen class="mainFeedContent">
+                        <IonText class="mainFeedMessageText">No posts to show. Follow someone to see their posts!</IonText>
                     </IonContent>
                 </IonPage>
     );

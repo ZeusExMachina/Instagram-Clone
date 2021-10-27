@@ -4,6 +4,8 @@ import { useIonRouter, useIonToast } from '@ionic/react';
 import { IonContent, IonPage, IonText, IonButton, IonInput } from '@ionic/react';
 // States
 import { CreateNewUser } from '../states/CurrentUser';
+// Appearance
+import "./CreateAccount.css"
 
 const CreateAccount = () => {
     const router = useIonRouter();
@@ -46,11 +48,11 @@ const CreateAccount = () => {
     return (
         <IonPage>
             <IonContent fullscreen>
-                <IonText>
-                    Insta-clone app
+                <IonText class="createAccTitle">
+                    Insta-Pic
                 </IonText>
 
-                <IonText>
+                <IonText class="createAccSubtitle">
                     Create an account to get started
                 </IonText>
 
@@ -63,6 +65,7 @@ const CreateAccount = () => {
                         if (typeof textInput === "string") { setUsernameText(textInput); }
                         else { setUsernameText(""); }
                     }}
+                    class="createAccTextInput"
                 />
 
                 <IonInput
@@ -75,20 +78,26 @@ const CreateAccount = () => {
                         if (typeof textInput === "string") { setPasswordText(textInput); }
                         else { setPasswordText(""); }
                     }}
+                    class="createAccTextInput"
                 />
 
                 <IonButton 
                     color="primary" 
-                    onClick={async () => { attemptToCreateAccount(); }
-                }>
+                    onClick={async () => { attemptToCreateAccount(); }}
+                    class="createAccButton"
+                >
 					Get Started
 				</IonButton>
 
-                <IonText>
+                <IonText class="createAccSubtitle">
                     Already have an account? Log in
                 </IonText>
 
-                <IonButton color="primary" onClick={ () => { navigateToPage("/login"); } }>
+                <IonButton
+                    color="primary" 
+                    onClick={ () => { navigateToPage("/login"); }}
+                    class="createAccButton"
+                >
 					Log in
 				</IonButton>
             </IonContent>

@@ -1,0 +1,24 @@
+.takePhotoHeaderText {
+    padding-top: 30px;
+    margin-bottom: 10px;
+    height: 10%;
+
+    text-align: start;
+    
+    font-size: 20px;
+}
+
+.takePhotoImageContainer {
+    width: 95%;
+    margin-top: 25%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+
+.takePhotoButtonArray {
+    position: absolute;
+    top: 70%;
+    
+    margin-left: 8%;
+    margin-right: 8%;
+}

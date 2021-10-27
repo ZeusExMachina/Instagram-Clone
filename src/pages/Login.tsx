@@ -4,6 +4,8 @@ import { useIonRouter, useIonToast } from '@ionic/react';
 import { IonContent, IonPage, IonText, IonInput, IonButton } from '@ionic/react';
 // States
 import { AuthenticateUser } from '../states/CurrentUser';
+// Appearance
+import "./Login.css"
 
 const Login = () => {
     const router = useIonRouter();
@@ -49,12 +51,13 @@ const Login = () => {
                 <IonButton 
                     color="primary" 
                     onClick={() => { navigateToPage("/createAccount") }}
+                    class="loginBackButton"
                 >
 					Back
 				</IonButton>
 
-                <IonText>
-                    Welcome back! Please log in to continue
+                <IonText class="loginSubtitle">
+                    Welcome back! Log in to continue
                 </IonText>
 
                 <IonInput
@@ -66,6 +69,7 @@ const Login = () => {
                         if (typeof textInput === "string") { setUsernameText(textInput); }
                         else { setUsernameText(""); }
                     }}
+                    class="loginTextInput"
                 />
 
                 <IonInput
@@ -78,11 +82,13 @@ const Login = () => {
                         if (typeof textInput === "string") { setPasswordText(textInput); }
                         else { setPasswordText(""); }
                     }}
+                    class="loginTextInput"
                 />
 
                 <IonButton 
                     color="primary" 
                     onClick={async () => { attemptToLogin() }}
+                    class="loginButton"
                 >
 					Log in
 				</IonButton>

@@ -4,6 +4,8 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSearchbar, Ion
 import UserSearchItem from '../components/UserItem';
 // States
 import { UserSearchResults, UpdateSearchedUsers } from '../states/UserSearchResults';
+// Appearance
+import './UserSearch.css'
 
 const UserSearch : React.FC = () => {
     // Local states
@@ -20,12 +22,12 @@ const UserSearch : React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Search for users</IonTitle>
+                    <IonTitle class="userSearchHeaderText">Search for users</IonTitle>
+                    <IonSearchbar
+                        value={searchText}
+                        onIonChange={e => setSearchText(e.detail.value!)}
+                    />
                 </IonToolbar>
-                <IonSearchbar
-                    value={searchText}
-                    onIonChange={e => setSearchText(e.detail.value!)}
-                />
             </IonHeader>
             <IonContent fullscreen>
                 <IonList>

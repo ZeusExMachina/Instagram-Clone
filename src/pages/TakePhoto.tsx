@@ -1,4 +1,3 @@
-// 3rd-party Imports
 import React, { useContext, useEffect, useState } from 'react'
 import { useIonToast } from '@ionic/react';
 // Components
@@ -8,6 +7,8 @@ import { CurrentUser } from '../states/CurrentUser';
 import { UploadPhoto } from '../states/UserPhotos';
 // Hooks
 import { usePhotoGallery } from "../hooks/usePhotoGallery";
+// Appearance
+import './TakePhoto.css'
 
 const TakePhoto: React.FC = () => {
   const {photo, setPhoto, takePhoto} = usePhotoGallery();
@@ -37,24 +38,28 @@ const TakePhoto: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Take a photo</IonTitle>
+          <IonTitle class="takePhotoHeaderText">Take a photo</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonButton
-          onClick={ async () => {
-              takePhoto();
-          }}
-        >
-            Take photo
-        </IonButton>
-        {photo != undefined && <IonImg src={photo.webviewPath}></IonImg>}
-        <IonButton 
-          disabled={uploadButtonDisabled}
-          onClick={async () => { await handlePostPhoto(); }}
-        >
-          Post Photo
-        </IonButton>
+        <div className="takePhotoImageContainer">
+          {photo != undefined && <IonImg src={photo.webviewPath}></IonImg>}
+        </div>
+        <div className="takePhotoButtonArray">
+          <IonButton
+            onClick={ async () => {
+                takePhoto();
+            }}
+          >
+              Take photo
+          </IonButton>
+          <IonButton 
+            disabled={uploadButtonDisabled}
+            onClick={async () => { await handlePostPhoto(); }}
+          >
+            Post Photo
+          </IonButton>
+        </div>
       </IonContent>
     </IonPage>
   );

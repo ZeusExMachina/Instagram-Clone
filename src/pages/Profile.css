@@ -1,0 +1,25 @@
+.profileHeaderText {
+    padding-top: 30px;
+    margin-bottom: 10px;
+    height: 10%;
+
+    text-align: start;
+    
+    font-size: 20px;
+}
+
+.profileButtonArray {
+    position: absolute;
+    top: 5%;
+    
+    margin-left: 7.5%;
+    margin-right: 5%;
+}
+
+.profilePhotoArray {
+    position: absolute;
+    top: 17%;
+
+    border-color: black;
+    border-bottom-width: 5px;
+}

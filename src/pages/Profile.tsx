@@ -7,6 +7,8 @@ import { CurrentUser } from '../states/CurrentUser'
 import { FollowingList, RefreshFollowingList } from '../states/FollowingList'
 import { FollowerList, RefreshFollowerList } from '../states/FollowerList'
 import { UserPhotos, RefreshUserPhotos } from '../states/UserPhotos'
+// Appearance
+import './Profile.css'
 
 const UserProfile = () => {
     const router = useIonRouter();
@@ -66,11 +68,11 @@ const UserProfile = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>{currentUser}</IonTitle>
+                    <IonTitle class="profileHeaderText">{currentUser}</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <div>
+                <div className="profileButtonArray">
                     <IonButton
                         onClick={() => { navigateToPage("/entrance/followerlist"); }}
                     >
@@ -84,7 +86,9 @@ const UserProfile = () => {
                         <IonText>Following</IonText>
                     </IonButton>
                 </div>
-                {createRowsAndColsOfPhotos()}
+                <div className="profilePhotoArray">
+                    {createRowsAndColsOfPhotos()}
+                </div>
             </IonContent>
         </IonPage>
     );
