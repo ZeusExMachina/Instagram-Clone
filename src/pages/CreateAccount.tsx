@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useIonRouter } from '@ionic/react';
+import { useIonRouter, useIonToast } from '@ionic/react';
 // Components
 import { IonContent, IonPage, IonText, IonButton, IonInput } from '@ionic/react';
 // States
@@ -7,6 +7,8 @@ import { CreateNewUser } from '../states/CurrentUser';
 
 const CreateAccount = () => {
     const router = useIonRouter();
+    const [present, dismiss] = useIonToast();
+    // Local states
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
     // Imported states
@@ -18,7 +20,27 @@ const CreateAccount = () => {
 
     async function attemptToCreateAccount() {
         const createAccountResult = await createNewUser(usernameText, passwordText);
-        if (createAccountResult == 0) { navigateToPage("/entrance/mainfeed"); }
+        if (createAccountResult == 0) {
+            navigateToPage("/entrance/mainfeed");
+        } else if (createAccountResult == 1) {
+            present({
+                buttons: [{ text: 'OK', handler: () => dismiss() }],
+                message: "Username needs to be at least 1 character long. Please try again",
+                duration: 8000
+              })
+        } else if (createAccountResult == 2) {
+            present({
+                buttons: [{ text: 'OK', handler: () => dismiss() }],
+                message: "Password needs to be at least 1 character long. Please try again",
+                duration: 8000
+            })
+        } else if (createAccountResult == 3) {
+            present({
+                buttons: [{ text: 'OK', handler: () => dismiss() }],
+                message: "That username already exists. Please enter a different username",
+                duration: 8000
+              })
+        }
     }
 
     return (

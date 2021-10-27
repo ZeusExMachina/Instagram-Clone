@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react'
-import { useIonRouter } from '@ionic/react';
+import { useIonRouter, useIonToast } from '@ionic/react';
 // Components
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonText, IonInput, IonButton } from '@ionic/react';
+import { IonContent, IonPage, IonText, IonInput, IonButton } from '@ionic/react';
 // States
 import { AuthenticateUser } from '../states/CurrentUser';
 
 const Login = () => {
     const router = useIonRouter();
+    const [present, dismiss] = useIonToast();
+    // Local states
     const [usernameText, setUsernameText] = useState("");
     const [passwordText, setPasswordText] = useState("");
     // Imported states
@@ -18,16 +20,31 @@ const Login = () => {
 
     async function attemptToLogin() {
         const loginResult = await authenticateUser(usernameText, passwordText);
-        if (loginResult == 0) { navigateToPage("/entrance/mainfeed"); }
+        if (loginResult == 0) {
+            navigateToPage("/entrance/mainfeed");
+        } else if (loginResult == 1) {
+            present({
+                buttons: [{ text: 'OK', handler: () => dismiss() }],
+                message: "Username needs to be at least 1 character long. Please try again",
+                duration: 8000
+              })
+        } else if (loginResult == 2) {
+            present({
+                buttons: [{ text: 'OK', handler: () => dismiss() }],
+                message: "Password needs to be at least 1 character long. Please try again",
+                duration: 8000
+            })
+        } else if (loginResult == 3) {
+            present({
+                buttons: [{ text: 'OK', handler: () => dismiss() }],
+                message: "Username or password is invalid. Please a valid username and password",
+                duration: 8000
+              })
+        }
     }
 
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Login</IonTitle>
-                </IonToolbar>
-            </IonHeader>
             <IonContent fullscreen>
                 <IonButton 
                     color="primary" 

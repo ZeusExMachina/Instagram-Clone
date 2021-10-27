@@ -1,5 +1,6 @@
 // 3rd-party Imports
 import React, { useContext, useEffect, useState } from 'react'
+import { useIonToast } from '@ionic/react';
 // Components
 import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonImg } from '@ionic/react';
 // States
@@ -9,7 +10,8 @@ import { UploadPhoto } from '../states/UserPhotos';
 import { usePhotoGallery } from "../hooks/usePhotoGallery";
 
 const TakePhoto: React.FC = () => {
-  const { photo, setPhoto, takePhoto } = usePhotoGallery();
+  const {photo, setPhoto, takePhoto} = usePhotoGallery();
+  const [present, dismiss] = useIonToast();
   const currentUser = useContext(CurrentUser);
   const uploadPhoto = useContext(UploadPhoto);
 
@@ -19,6 +21,12 @@ const TakePhoto: React.FC = () => {
     await uploadPhoto(currentUser, photo!.filepath, photo!.base64Data!);
     setPhoto(undefined);
     setUploadButtonDisabled(true)
+
+    present({
+      buttons: [{ text: 'OK', handler: () => dismiss() }],
+      message: "You just uploaded a photo!",
+      duration: 5000
+    })
   }
 
   useEffect(() => {
