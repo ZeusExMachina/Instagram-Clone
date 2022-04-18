@@ -1,5 +1,5 @@
 # Instragram Clone IOT App
-Social media platform mobile IOT app, mimicking Instagram's main features. Solo Ionic React mobile app project from SWEN325 in 2021 at VUW.
+"Insta-Pic" is a social media platform mobile IOT app, mimicking Instagram's main features. Solo Ionic React mobile app project from SWEN325 in 2021 at VUW.
 
 # To run this Ionic application, follow these steps:
 1. Install Ionic, including Ionic Lab to see the app on a phone simulator
@@ -15,21 +15,21 @@ Social media platform mobile IOT app, mimicking Instagram's main features. Solo 
 This is the landing page of the app. The user may register new accounts on this screen to 
 access the app.
 
-![](resources/Create-Account.png)
+![](screenshot-images/Create-Account.png)
 
 ## Login page
 Accessed by pressing the “Log In” button on the Create Account page. Here a user can 
 access an existing account by entering its credentials. Once authorised, the follower list, 
 following list, and posted pictures are loaded.
 
-![](resources/Login.png)
+![](screenshot-images/Login.png)
 
 ## Main Feed page
 This is the page the user is taken to upon successful account creation or login. This page
 shows a list of all photos posted by all users the currently logged in user is following. These 
 photos are displayed in reverse-chronological order.
 
-![](resources/Main-Feed.png)
+![](screenshot-images/Main-Feed.png)
 
 ## User Search page
 The user can press the “Search” tab button to switch to this page. Here, the user can search 
@@ -37,37 +37,37 @@ for usernames of other users. Each listed user shows whether the currently logge
 following that listed user or not (shows + if not currently following, shows – if currently 
 following).
 
-![](resources/User-Search.png)
+![](screenshot-images/User-Search.png)
 
 ## Take photo page
 On this page, the user may take photos with a camera by pressing the “Take Photo” button, 
 and then posting the taken photo to be seen by others.
 
-![](resources/Take-Photo.png)
+![](screenshot-images/Take-Photo.png)
 
 ## Camera open
 
-![](resources/Camera-Open.png)
+![](screenshot-images/Camera-Open.png)
 
 ## Photo taken and displayed, ready to be posted
 
-![](resources/Photo-Taken.png)
+![](screenshot-images/Photo-Taken.png)
 
 ## Profile page
 Here, a user can see how many users they are being followed by and how many users they 
 are following. Note that both displays are buttons that when tapped, lead to their own 
 page. On this page, they can also see all photos they have previously posted.
 
-![](resources/Profile.png)
+![](screenshot-images/Profile.png)
 
 ## Followers list display
 This shows an exhaustive list of all users following the currently logged in user. Each shown 
 user can be followed/unfollowed.
 
-![](resources/Followers-List.png)
+![](screenshot-images/Followers-List.png)
 
 ## Following list display
 This shows an exhaustive list of all users that the currently logged in user is following. Each 
 user shown here can be unfollowed to be removed from this list.
 
-![](resources/Following-List.png)
+![](screenshot-images/Following-List.png)
