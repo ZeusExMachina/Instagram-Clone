@@ -1,5 +1,7 @@
-To run this Ionic application, follow these steps:
+# Instragram Clone IOT App
+Social media platform mobile IOT app, mimicking Instagram's main features. Solo Ionic React mobile app project from SWEN325 in 2021 at VUW.
 
+# To run this Ionic application, follow these steps:
 1. Install Ionic, including Ionic Lab to see the app on a phone simulator
 2. Clone this repository
 3. Open the root of the project and install all dependencies by running the "npm i" command
@@ -8,3 +10,4 @@ To run this Ionic application, follow these steps:
     4.2. Unzip the "firebase-replacement-dependencies.zip" file and copy the "@firebase" and "firebase" folders inside it into the "node_modules" folder.
 5. Run the command "ionic serve --lab" (or just "ionic serve" for a non-Ionin lab version, although this isnot preferred) from the root of the project. This should open the app.
 6. Play around with it! Feel free to make your own account. To follow some users, some existing users have the usernames of "zeus", "ice", and "might".
+
